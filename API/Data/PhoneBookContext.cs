@@ -14,5 +14,6 @@ namespace API.Data
         }
 
         public DbSet<PhoneBook>  PhoneBooks { get; set; }
+        public DbSet<Test>  Tests { get; set; }
     }
 }

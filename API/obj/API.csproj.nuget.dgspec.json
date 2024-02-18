@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Aurora\\OneDrive\\Desktop\\Task\\API\\API.csproj": {}
+    "C:\\Users\\Aurora\\OneDrive\\Desktop\\Task\\.NET-API\\API\\API.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Aurora\\OneDrive\\Desktop\\Task\\API\\API.csproj": {
+    "C:\\Users\\Aurora\\OneDrive\\Desktop\\Task\\.NET-API\\API\\API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Aurora\\OneDrive\\Desktop\\Task\\API\\API.csproj",
+        "projectUniqueName": "C:\\Users\\Aurora\\OneDrive\\Desktop\\Task\\.NET-API\\API\\API.csproj",
         "projectName": "API",
-        "projectPath": "C:\\Users\\Aurora\\OneDrive\\Desktop\\Task\\API\\API.csproj",
+        "projectPath": "C:\\Users\\Aurora\\OneDrive\\Desktop\\Task\\.NET-API\\API\\API.csproj",
         "packagesPath": "C:\\Users\\Aurora\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Aurora\\OneDrive\\Desktop\\Task\\API\\obj\\",
+        "outputPath": "C:\\Users\\Aurora\\OneDrive\\Desktop\\Task\\.NET-API\\API\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Aurora\\AppData\\Roaming\\NuGet\\NuGet.Config",
