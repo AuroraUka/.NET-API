@@ -30,4 +30,15 @@ app.UseAuthorization();
 
 app.MapControllers();
 
+
+var scope= app.Services.CreateScope();
+var context = scope.ServiceProvider.GetRequiredService<PhoneBookContext>();
+var logger = scope.ServiceProvider.GetRequiredService<ILogger<Program>>();
+try{
+    context.Database.Migrate();
+    SeedData.Initialize(context);
+} catch (Exception ex){
+    logger.LogError(ex, "A problem occurred during migration");
+}
+
 app.Run();
