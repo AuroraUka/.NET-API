@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using API.Entities;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace API.Data
 {
@@ -13,7 +14,8 @@ namespace API.Data
         {
         }
 
-        public DbSet<PhoneBook>  PhoneBooks { get; set; }
+        public DbSet<PhoneBook>  PhoneBooks { get; set; }      
         public DbSet<Test>  Tests { get; set; }
+
     }
 }
