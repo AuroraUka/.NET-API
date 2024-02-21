@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using API.Data;
+using API.DTOs;
 using API.Entities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -22,16 +23,24 @@ namespace API.Controllers
         }
 
 
-        [HttpGet]
-        public async Task<ActionResult<List<PhoneBook>>> GetProducts()
+       [HttpGet]
+        public async Task<ActionResult<List<PhoneBookDto>>> GetProducts()
         {
-            return await _context.PhoneBooks.ToListAsync();
+            var phoneBooks = await _context.PhoneBooks.ToListAsync();
+            var phoneBookDTOs = phoneBooks.Select(PhoneBookToDto).ToList(); // Removed () after PhoneBookToDto
+            return phoneBookDTOs;
         }
-        
+
         [HttpGet("{id}")]
-         public async Task<ActionResult<PhoneBook>>  GetProduct(int id)
+        public async Task<ActionResult<PhoneBookDto>> GetProduct(int id)
         {
-            return await _context.PhoneBooks.FindAsync(id);
+            var phoneBook = await _context.PhoneBooks.FindAsync(id);
+            if (phoneBook == null)
+            {
+                return NotFound();
+            }
+            var phoneBookDTO = PhoneBookToDto(phoneBook); // Removed 's' from PhoneBookToDto
+            return phoneBookDTO;
         }
 
         [HttpPost]
@@ -57,6 +66,22 @@ namespace API.Controllers
             return NoContent();
         }
 
+        
+         [HttpPost("{id}")]
+        public async Task<ActionResult> EditPhoneBookP(int id, PhoneBook phoneBook)
+        {
+            if (id != phoneBook.Id)
+            {
+                return BadRequest();
+            }
+
+            _context.Entry(entity: phoneBook).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+            _context.SaveChanges();
+
+            return NoContent();
+        }
+
+
         [HttpDelete("{id}")]
         public IActionResult DeletePhoneBook(int id)
         {
@@ -71,6 +96,20 @@ namespace API.Controllers
             _context.SaveChanges();
 
             return NoContent();
+        }
+
+
+
+         private PhoneBookDto PhoneBookToDto(PhoneBook pb) // Removed static and Func<>
+        {
+            return new PhoneBookDto
+            {
+                Id = pb.Id,
+                Name = pb.Name,
+                Surname = pb.Surname,
+                Type = pb.Type.ToString(),
+                Number = pb.Number
+            };
         }
     }
 }

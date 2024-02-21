@@ -19,14 +19,14 @@ namespace API.Data
                 {
                     Name = "John",
                     Surname = "Doe",
-                    Type = "Work",
+                    Type = PhoneType.Work,
                     Number = "1234567890"
                 },
                 new PhoneBook
                 {
                     Name = "John2",
                     Surname = "Doe2",
-                    Type = "Cellphone",
+                    Type = PhoneType.Cellphone,
                     Number = "123456120"
                 }
             };

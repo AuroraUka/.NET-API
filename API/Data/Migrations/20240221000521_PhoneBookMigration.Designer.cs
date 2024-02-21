@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace API.Data.Migrations
 {
     [DbContext(typeof(PhoneBookContext))]
-    [Migration("20240220212126_PhoneBookMigration")]
+    [Migration("20240221000521_PhoneBookMigration")]
     partial class PhoneBookMigration
     {
         /// <inheritdoc />
@@ -42,7 +42,8 @@ namespace API.Data.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Type")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasColumnType("nvarchar(24)");
 
                     b.HasKey("Id");
 
