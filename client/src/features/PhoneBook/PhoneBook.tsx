@@ -5,6 +5,7 @@ import BasicModal from "./Modal";
 import axios from "axios";
 import { usePhoneBookContext } from '../../app/context/PhoneBookContext';
 import DeleteIcon from '@mui/icons-material/Delete';
+import { toast } from "react-toastify";
 
 
 const PhoneBook=() => {
@@ -35,15 +36,22 @@ const [selectedOption, setSelectedOption] = useState('');
   function fetchData(path: string) {
     axios.get(`http://localhost:5005/api/PhoneBooks/${path}`)
       .then(response => setPhonebooks(response.data))
-      .catch(error => console.error('Error fetching data:', error));
+      .catch(error => {
+        console.error('Error fetching data:', error)
+        toast.error("Error fetching data!");
+    });
   }
   
   function deleteData(id: number | undefined){
     axios.delete(`http://localhost:5005/api/PhoneBooks/${id}`)
     .then(() => {
       fetchData('');
+      toast.success("The entity has been deleted successfully!");
     })
-    .catch(error => console.error('Error deleting data:', error));
+    .catch(error => {
+      console.error('Error deleting data:', error)
+      toast.error("Deletion not successfull due to error!");
+    });
   }
   return (
     <Box display='flex' sx={{ flexDirection:'column', width: '100%' ,justifyContent:'center', alignItems:'center'}}>

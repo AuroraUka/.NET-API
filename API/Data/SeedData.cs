@@ -17,17 +17,24 @@ namespace API.Data
             {
                 new PhoneBookEntry
                 {
-                    FirstName = "John",
-                    LastName = "Doe",
+                    FirstName = "Alice",
+                    LastName = "Smith",
                     Type = PhoneType.Work.ToString(),
                     Number = "1234567890"
                 },
                 new PhoneBookEntry
                 {
-                    FirstName = "John2",
-                    LastName = "Doe2",
+                    FirstName = "Bob",
+                    LastName = "Doe",
                     Type = PhoneType.Cellphone.ToString(),
                     Number = "123456120"
+                },
+                new PhoneBookEntry
+                {
+                    FirstName = "Charlie",
+                    LastName = "Johnson",
+                    Type = PhoneType.Home.ToString(),
+                    Number = "123143120"
                 }
             };
 
