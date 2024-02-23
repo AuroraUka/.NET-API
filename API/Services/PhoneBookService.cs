@@ -29,7 +29,7 @@ namespace API.Services
             {
                 entry.Type = entry.Type.ToString();
                 _dbContext.PhoneBooks.Add(entry);
-                await _dbContext.SaveChangesAsync();
+                await _dbContext.SaveChangesAsync(); 
             }
             catch ( Exception ex )
             {
@@ -96,6 +96,24 @@ namespace API.Services
                  _logger.LogError(ex, "An error occurred while fetching  phone book entries.");
                  throw;
             }
+            finally
+            {
+                _getSemaphore.Release();
+            }
+        }
+
+        public async Task<PhoneBookEntry> GetPhoneBook(int id)
+        {
+            await _getSemaphore.WaitAsync();
+            try
+            {
+                return await _dbContext.PhoneBooks.FindAsync(id);
+            }
+            catch ( Exception ex ) 
+            {
+                 _logger.LogError(ex, "An error occurred while fetching your phone book entry.");
+                 throw;
+            } 
             finally
             {
                 _getSemaphore.Release();

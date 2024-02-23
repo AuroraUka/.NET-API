@@ -13,20 +13,20 @@ namespace API.Data
             if (context.PhoneBooks.Any()) return;
 
 
-            var books = new List<PhoneBook>
+            var books = new List<PhoneBookEntry>
             {
-                new PhoneBook
+                new PhoneBookEntry
                 {
-                    Name = "John",
-                    Surname = "Doe",
-                    Type = PhoneType.Work,
+                    FirstName = "John",
+                    LastName = "Doe",
+                    Type = PhoneType.Work.ToString(),
                     Number = "1234567890"
                 },
-                new PhoneBook
+                new PhoneBookEntry
                 {
-                    Name = "John2",
-                    Surname = "Doe2",
-                    Type = PhoneType.Cellphone,
+                    FirstName = "John2",
+                    LastName = "Doe2",
+                    Type = PhoneType.Cellphone.ToString(),
                     Number = "123456120"
                 }
             };

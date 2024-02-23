@@ -16,5 +16,6 @@ namespace API.Services
         Task AddPhoneBook(PhoneBookEntry entry);
         Task EditPhoneBook(PhoneBookEntry entry);
         Task DeletePhoneBook(int id);
+        Task<PhoneBookEntry> GetPhoneBook(int id);
     }
 }
