@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using API.Data;
-using API.DTOs;
 using API.Entities;
 using API.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -78,7 +77,7 @@ namespace API.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<PhoneBookDto>> GetPhoneBook(int id)
+        public async Task<ActionResult<PhoneBookEntry>> GetPhoneBook(int id)
         {
            var entry = await _phoneBookService.GetPhoneBook(id);
                 return Ok(entry);
