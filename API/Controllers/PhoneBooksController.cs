@@ -10,12 +10,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace API.Controllers
 {
-
-    [ApiController]
-    [Route("api/[controller]")]
-    public class PhoneBooksController : ControllerBase
+    public class PhoneBooksController : BaseApiController
     {
-        private readonly PhoneBookContext _context;
+         private readonly IPhoneBookService _phoneBookService;
 
         public PhoneBooksController(PhoneBookContext context)
         {

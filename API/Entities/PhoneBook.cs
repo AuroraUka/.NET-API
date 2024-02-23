@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace API.Entities
 {
-    public class PhoneBook
+    public class PhoneBookEntry
     {
         public int Id { get; set; }
-        public string Name { get; set; }
-        public string Surname { get; set; }
-        public PhoneType Type { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string Type { get; set; }
         public string Number { get; set; }
     }
 }
