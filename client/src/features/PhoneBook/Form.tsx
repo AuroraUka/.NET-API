@@ -26,7 +26,7 @@ const PhoneBookForm= ({ handleClose, phoneBook, buttonText } :Props) => {
     type: PhoneBookType.Work,
     number: ""
   });
-  const { shouldRefetch, setShouldRefetch } = usePhoneBookContext();
+  const {  setShouldRefetch } = usePhoneBookContext();
 
   useEffect(() => {
     if (phoneBook) {

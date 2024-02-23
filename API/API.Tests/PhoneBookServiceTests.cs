@@ -27,6 +27,7 @@ namespace API.API.Tests
         {
             // Arrange
             var options = CreateNewContextOptions();
+            var semaphore = new SemaphoreSlim(1);
             using (var context = new PhoneBookContext(options))
             {
                 context.PhoneBooks.AddRange(
@@ -46,7 +47,17 @@ namespace API.API.Tests
             }
 
             // Assert
+            Assert.NotNull(result);
             Assert.Equal(3, result.Count);
+
+            foreach (var entry in result)
+            {
+                Assert.NotNull(entry.FirstName);
+                Assert.NotNull(entry.LastName);
+                Assert.NotNull(entry.Type);
+                Assert.NotNull(entry.Number);
+            }
+
             Assert.Equal("Alice", result[0].FirstName);
             Assert.Equal("Bob", result[1].FirstName);
             Assert.Equal("John", result[2].FirstName);

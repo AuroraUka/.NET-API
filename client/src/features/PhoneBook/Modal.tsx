@@ -5,7 +5,8 @@ import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import PhoneBookForm from './Form';
 import { PhoneBook } from '../../app/models/phoneBook';
-
+import EditIcon from '@mui/icons-material/Edit';
+import AddIcon from '@mui/icons-material/Add';
 interface ModalProps {
   buttonText: string;
   phoneBook?: PhoneBook;
@@ -27,20 +28,19 @@ const style = {
 const BasicModal = ({ buttonText, phoneBook } : ModalProps) => {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
-  const handleClose = () => {
-  setOpen(false);
-}
+  const handleClose = () => setOpen(false);
+
 
   return (
     <div>
         {buttonText == 'ADD' ? <Button 
         variant="contained" 
-        sx={{ m: 1, position: 'relative',left:400, bgcolor:'#37b921', '&:hover': {bgcolor:'#0aaa01'}}} 
-        onClick={handleOpen}>{buttonText}</Button> 
+        sx={{ m: 1, bgcolor:'#37b921', '&:hover': {bgcolor:'#0aaa01'}}} 
+        onClick={handleOpen}>{buttonText}<AddIcon/></Button> 
         :
         <Button 
         variant='contained'
-        onClick={handleOpen}>{buttonText}</Button>}
+        onClick={handleOpen}><EditIcon/></Button>}
       <Modal
         open={open}
         onClose={handleClose}

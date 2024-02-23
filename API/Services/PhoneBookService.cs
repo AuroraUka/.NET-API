@@ -27,7 +27,6 @@ namespace API.Services
             await _semaphore.WaitAsync();
             try
             {
-                entry.Type = entry.Type.ToString();
                 _dbContext.PhoneBooks.Add(entry);
                 await _dbContext.SaveChangesAsync(); 
             }
@@ -47,7 +46,7 @@ namespace API.Services
             await _semaphore.WaitAsync();
             try
             {
-                var entry = await _dbContext.PhoneBooks.FindAsync(id);
+                var entry = await _dbContext.PhoneBooks.Where(pb => pb.Id == id).FirstOrDefaultAsync();
                 if (entry != null)
                 {
                     _dbContext.PhoneBooks.Remove(entry);
@@ -70,9 +69,12 @@ namespace API.Services
             await _semaphore.WaitAsync();
             try
             {
-                entry.Type = entry.Type.ToString();
-                _dbContext.Entry(entry).State = EntityState.Modified;
-                await _dbContext.SaveChangesAsync();
+                if ( entry != null)
+                {
+                    _dbContext.Entry(entry).State = EntityState.Modified; //Me shpejt
+                    // _dbContext.Update(entry);
+                    await _dbContext.SaveChangesAsync();
+                }
             }
             catch ( Exception ex )
             {
@@ -89,7 +91,7 @@ namespace API.Services
              await _getSemaphore.WaitAsync();
             try
             {
-                return await _dbContext.PhoneBooks.ToListAsync();
+                return await _dbContext.PhoneBooks.Select(pb => pb).ToListAsync();
             }
             catch ( Exception ex)
             {
@@ -107,7 +109,7 @@ namespace API.Services
             await _getSemaphore.WaitAsync();
             try
             {
-                return await _dbContext.PhoneBooks.FindAsync(id);
+                return await _dbContext.PhoneBooks.Where(c => c.Id == id).FirstOrDefaultAsync();
             }
             catch ( Exception ex ) 
             {
