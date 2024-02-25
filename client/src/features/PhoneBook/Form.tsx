@@ -1,5 +1,5 @@
 import  { useState, ChangeEvent, FormEvent, useEffect } from "react";
-import { TextField, Button, MenuItem, Select, SelectChangeEvent } from "@mui/material";
+import { TextField, Button, MenuItem, Select, SelectChangeEvent, Box } from "@mui/material";
 import axios from "axios";
 import { PhoneBook } from "../../app/models/phoneBook";
 import { usePhoneBookContext } from '../../app/context/PhoneBookContext';
@@ -132,9 +132,14 @@ const PhoneBookForm= ({ handleClose, phoneBook, buttonText } :Props) => {
         required
         inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }}
       />
+      <Box display={`flex`} justifyContent={`space-around`}>
+      <Button type="submit" variant="outlined" color="error" onClick={handleClose}>
+        Cancel
+      </Button>
       <Button type="submit" variant="contained" color="primary">
         {buttonText} 
       </Button>
+      </Box>
     </form>
   );
 };
